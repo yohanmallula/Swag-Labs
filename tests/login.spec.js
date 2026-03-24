@@ -1,11 +1,13 @@
 const { test, expect } = require("../fixtures/baseTest");
 
 test.describe("SauceDemo Login Tests", () => {
-  test("Login with valid credentials", async ({ loginPage, loginData }) => {
+  test("Login with valid credentials", async ({ loginPage, loginData , page}) => {
   
     await loginPage.login(loginData.username, loginData.password);
     
     await loginPage.loginButton_Click();
+
+    await page.context().storageState({path: 'storageState.json'})
   });
  
   test("Login with invalid password", async ({ loginPage }) => {
